@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高宏教育 · 辅立码课教师端操作手册（图文+视频）</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --border: #e5e7eb;
+    --text: #1f2329; --muted: #86909c;
+    --blue: #185fa5; --blue-light: #e6f1fb;
+    --green: #3b6d11; --green-light: #eaf3de;
+    --orange: #854f0b; --orange-light: #faeeda;
+    --red: #a32d2d; --red-light: #fcebeb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: var(--bg); color: var(--text); }
+  header { background: var(--card); border-bottom: 1px solid var(--border); padding: 18px 28px; }
+  header h1 { font-size: 19px; font-weight: 600; }
+  header p { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  header a { color: var(--blue); text-decoration: none; }
+  header a:hover { text-decoration: underline; }
+  .layout { display: flex; max-width: 1280px; margin: 0 auto; gap: 20px; padding: 20px 24px 60px; align-items: flex-start; }
+  aside { width: 268px; flex-shrink: 0; position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; }
+  .search { width: 100%; border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; font-size: 13px; outline: none; background: var(--card); }
+  .search:focus { border-color: var(--blue); }
+  .nav-group { margin-top: 18px; }
+  .nav-group > .g-title { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 6px; padding: 0 4px; }
+  .g-dot { width: 8px; height: 8px; border-radius: 2px; }
+  .nav-item { display: block; width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 9px 12px; border-radius: 8px; font-size: 13.5px; color: var(--text); font-family: inherit; line-height: 1.4; }
+  .nav-item:hover { background: var(--card); }
+  .nav-item.active { background: var(--blue-light); color: var(--blue); font-weight: 600; }
+  .nav-item .no { font-size: 11px; color: var(--muted); margin-right: 6px; }
+  .nav-item.active .no { color: var(--blue); }
+  .nav-empty { font-size: 12px; color: var(--muted); padding: 8px 12px; line-height: 1.6; background: var(--card); border: 1px dashed var(--border); border-radius: 8px; }
+  main { flex: 1; min-width: 0; }
+  .detail { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; }
+  .d-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .d-head h2 { font-size: 20px; font-weight: 600; }
+  .badge { font-size: 11px; font-weight: 600; border-radius: 6px; padding: 3px 10px; }
+  .b-basic { background: var(--green-light); color: var(--green); }
+  .b-adv { background: var(--orange-light); color: var(--orange); }
+  .b-faq { background: var(--blue-light); color: var(--blue); }
+  .b-stu { background: var(--red-light); color: var(--red); }
+  .block { margin-top: 18px; }
+  .block h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .block h3::before { content: ""; width: 3px; height: 14px; background: var(--blue); border-radius: 2px; display: inline-block; }
+  .block p, .block li { font-size: 13.5px; line-height: 1.8; color: #3c4045; }
+  .block ol, .block ul { padding-left: 22px; }
+  .tip { background: var(--orange-light); border-radius: 8px; padding: 10px 14px; font-size: 12.5px; color: var(--orange); line-height: 1.7; }
+  .metric { background: var(--green-light); border-radius: 8px; padding: 10px 14px; font-size: 12.5px; color: var(--green); line-height: 1.7; }
+  .imgs { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+  .imgs img { width: 100%; border: 1px solid var(--border); border-radius: 8px; cursor: zoom-in; }
+  .figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .figs figure { margin: 0; cursor: zoom-in; }
+  .figs img { width: 100%; border: 1px solid var(--border); border-radius: 8px; display: block; }
+  .figs figcaption { font-size: 12px; color: var(--muted); text-align: center; margin-top: 6px; }
+  .manual-text p { font-size: 12.5px; line-height: 1.9; padding: 6px 0; border-bottom: 1px dashed var(--border); }
+  .manual-text p:last-child { border-bottom: none; }
+  .video-box { background: #000; border-radius: 10px; overflow: hidden; }
+  .video-box video { width: 100%; max-height: 480px; display: block; background: #000; }
+  .no-video { font-size: 12.5px; color: var(--muted); background: var(--bg); border-radius: 8px; padding: 10px 14px; line-height: 1.7; }
+  footer { max-width: 1280px; margin: 0 auto; padding: 0 24px 50px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .img-mask { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.72); z-index: 9; cursor: zoom-out; align-items: center; justify-content: center; }
+  .img-mask.show { display: flex; }
+  .img-mask img { max-width: 92vw; max-height: 92vh; border-radius: 8px; }
+  @media (max-width: 860px) {
+    .layout { flex-direction: column; }
+    aside { width: 100%; position: static; max-height: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>高宏教育 · 辅立码课教师端操作手册</h1>
+  <p>文字解析（适用场景 · 操作步骤 · 指标要点）与操作视频配套呈现。素材来源：<a href="https://fuulea.feishu.cn/wiki/wikcnmONSGXnP51CnEbw0cRPuRg" target="_blank">辅立码课操作讲解（飞书）</a> ·
+  <a href="https://fuulea.feishu.cn/drive/folder/EyWrfY2bglikPydd3UFcQXlLnIf" target="_blank">分类文件夹</a> · 《第一阶段推进方案》《教师端常见问题汇总》《辅立码课应用标准》</p>
+</header>
+
+<div class="layout">
+  <aside>
+    <input class="search" id="search" type="text" placeholder="搜索场景关键词…" oninput="filterNav(this.value)">
+    <nav id="nav"></nav>
+  </aside>
+  <main>
+    <div class="detail" id="detail"></div>
+  </main>
+</div>
+
+<div class="img-mask" id="imgMask" onclick="this.classList.remove('show')">
+  <img id="imgMaskImg" src="" alt="">
+</div>
+
+<footer>
+  目录结构：高宏教育（一级）→ 基础操作 / 深入使用 / 教师端常见问题 / 学生操作（二级）→ 各场景分类（三级）→ 图文解析 + 操作视频。<br>
+  指标口径依据《辅立码课应用标准》：日均任务≥1次 · 完成率≥90% · 阅卷率≥80%（分层作业阅卷率≥90%），考核按较低口径从严执行。
+</footer>
+
+<script>
+var DATA = [
+  { group: "basic", groupName: "基础操作", no: "01", title: "辅立码课应用场景简介",
+    video: "基础操作/1-应用场景简介/1.辅立码课应用场景简介.mp4",
+    scene: "新教师入门总览：了解平台四大能力与四类任务类型，建立「发布—批阅—讲评—复练」的完整教学闭环。",
+    steps: ["平台核心目标：作业发布、批改阅卷、大屏讲题融入（高效习题讲解）、课前备课基础数据查看。",
+      "四类任务按需选择：课程任务（平台课程内容）、练习任务（题库/组卷）、资料任务（仅查看）、答题卡任务（纸质考试）。",
+      "全部习题任务经平台布置下发采集数据，课前看数据调整教学，课上用大屏讲题针对性讲解共性错误。"],
+    tips: "先看本视频建立整体认知，再按下方分类逐个场景学习具体操作。",
+    metric: "常态指标：每班每科日均任务≥1次；完成率≥90%；阅卷率≥80%；大屏讲题覆盖率≥80%。" },
+
+  { group: "basic", groupName: "基础操作", no: "02", title: "课程任务发布",
+    video: "基础操作/2-课程任务发布/3.课程任务发布.mp4",
+    scene: "使用平台自带课程资源布置任务：码上提分精品课程（学生可自学，教师可发布）、校本课程、名校课程。",
+    steps: ["登录教师端，进入「课程」界面，选择课程与所需章节中的内容。",
+      "点击「布置任务」跳转到任务设置界面。",
+      "可按模块整块选择，也可以按题目单独加入「选题篮」。"],
+    metric: "一轮复习推荐：培优班从「一轮精品课视频题目」「高考考点全覆盖拔尖题组」选题。" },
+
+  { group: "basic", groupName: "基础操作", no: "03", title: "学科网选题",
+    video: "基础操作/3-学科网选题/4.学科网选题.mp4",
+    scene: "从学科网组卷选题，直接跳转到辅立码课平台发布，适合围绕薄弱知识点快速组卷。",
+    steps: ["在学科网按知识点、题型、难度筛选试题并组卷。",
+      "组卷完成后直接跳转辅立码课平台。",
+      "试题进入「选题篮」，发布前可修改和编辑试题、分值等。",
+      "按任务发布流程完成参数设置并下发。"],
+    metric: "考后反扫卷组卷推荐路径之一：「相似题」「知识点组卷」「学科网选题」三选一组合使用。" },
+
+  { group: "basic", groupName: "基础操作", no: "04", title: "练习任务发布（题库/选卷）",
+    video: "基础操作/4-练习任务发布/5.练习任务发布.mp4",
+    scene: "日常作业与限时练的主发布入口：题库选题任务、选卷任务，发布前可在选题篮编辑试题与分值。",
+    steps: ["任务名称：建议「发布时间＋任务内容」，如「10.23 数学 错题反扫卷」。",
+      "时间设置：默认立即发布；截止时间默认发布后24小时；考试/测验场景建议设定答案公布时间、不允许晚交。",
+      "阅卷方式：选择题系统自动批阅；非选择题可设学生互阅 / 教师批阅 / 学生自阅三种。",
+      "错题重练：打开后学生会在重练时间收到自己的原错题（默认隔一天，可自行设置，建议设置最大题量）。",
+      "分组拍照：默认开启，题组题目可拍在同一张照片，教师阅卷不受影响。",
+      "参数设置完成后点「下一步」，选择发送的「学生」或「班级」（单独选学生发布会自动创建靶向班）。"],
+    tips: "发布流程总结：任务名称 → 编辑时间（开始/结束/答案公布）→ 阅卷方式 → 打开错题重练（设最大题量）→ 选择发送对象 → 发布。",
+    metric: "常态底线指标：习题任务布置量每班每科日均≥1次；学生任务完成率≥90%；教师任务阅卷率≥80%；平均每任务习题数≥7。" },
+
+  { group: "basic", groupName: "基础操作", no: "05", title: "资料任务",
+    video: "基础操作/5-资料任务/6.资料任务.mp4",
+    scene: "发布备考资料、答案解析、课件或 PDF 文件供学生查看学习。",
+    steps: ["进入任务发布，选择「资料任务」类型，上传或选择资料文件。",
+      "设置发布对象与时间，完成发布。"],
+    tips: "注意：资料任务学生只可观看学习，不可以进行作答上传答案——需要作答的场景请用练习任务或答题卡任务。",
+    metric: "周测月考视频化配套：录制的讲解视频/音频可以资料形式上传到对应题目，覆盖率目标100%，其中视频占比≥50%。" },
+
+  { group: "basic", groupName: "基础操作", no: "06", title: "答题卡任务（制答题卡）",
+    video: "基础操作/6-答题卡任务/7.答题卡任务.mp4",
+    scene: "任务发布里的第四类任务：把一套纸质试卷做成「答题卡」——学生只写答案，选择题系统自动机阅、非选择题教师批阅。适合教辅、校本作业、周测等纸质作答场景，是把纸面作业数据化的入口。注意与左侧【考试】里的「纸质答题卡 + 扫卡」是两套东西：正式考试走考试系统，日常纸质作业走答题卡任务。",
+    steps: ["在任务发布页点击【制答题卡】，进入答题卡制作界面。",
+      "第一步：输入答题卡/试卷名称。",
+      "第二步：按实际选择题、非选择题数量「添加题目」——设置题型、题号、选项个数、题目分值；选择题直接勾选答案（多选勾多个）。",
+      "第三步：上传试卷电子档（支持多种格式，附件可传英语听力；Word 导入要求题目与答案分离、格式完整清晰），并在【答案/解析】里录入答案与解析（可文字录入、粘贴或截图）。",
+      "第四步：点「切题」，建议选「逐题框选 + 快速」模式，按住鼠标左键框选题目和答案，系统为每题生成标准边框。",
+      "最后选择发送对象/班级发布；学生提交后客观题自动机阅，主观题可走 AI 阅卷、教师复核批改。"],
+    tips: "要点与坑：① 答题卡任务现已支持 AI 阅卷——主观题可先 AI 批阅、教师复核，批阅量大幅下降；② 答题卡默认不能下载，需要下载就在后台「试卷管理」里取消「离线答题卡」勾选；③ 试卷生成后只能改分值，题目数量不能再增删（含小题），否则学生提交会报错。题目量大时可把资料发给运营人员辅助录入。",
+    metric: "纸质作业机阅入口：客观题自动批阅 + 主观题 AI 阅卷（教师复核），教师阅卷率≥80%；校本练习、周测、月考试卷提前一天交运营人员录入，保证按期发布。" },
+
+  { group: "adv", groupName: "深入使用", no: "01", title: "错题重练（教师篇专题）",
+    guide: "深入使用/1-错题重练/错题应用专题_教师篇.html",
+    scene: "从共性错题到「一生一策」：针对每个学生自己的错题（个性错题本），任务完成后系统自动推送重练——是错题反扫卷的数据基础，两者是递进关系。下方专题含四个章节：日常任务错题重练、错题反扫个性错题、学生个性错题本、对人靶向推送。",
+    steps: ["日常任务发布时打开「错题重练」开关：设置重练时间、错题个数、重练题目类型后发布。",
+      "在「错题反扫」→「个性错题」查看每个学生的未掌握错题，可对学生个性错题进行组卷、反扫。",
+      "学生个性错题本：自动沉淀每生专属错题档案，支持按知识点、时间筛选查看。",
+      "对人靶向推送：按人勾选错题创建靶向班，把个性错题卷定向推送给对应学生，实现「一生一策」。"],
+    tips: "学科要求：数学、物理、化学、生物四科必须开启；历史、政治、地理可仅对选择题开启；语文、英语酌情。每周至少3次习题任务开启错题重练。配套视频（操作演示）见本条底部。",
+    metric: "错题重练覆盖率≥50%；完成率≥90%；得分率≥80%。",
+    video: "深入使用/1-错题重练/1.错题重练.mp4" },
+
+  { group: "adv", groupName: "深入使用", no: "02", title: "靶向提升（分层靶向班）",
+    video: "深入使用/2-靶向提升/2.靶向提升.mp4",
+    scene: "培优靶向班（拔尖生·拔高作业）与基础靶向班（薄弱生·基础作业）两套「加餐」，让尖子生吃得饱、基础生跟得上。",
+    steps: ["按学生本科成绩排名挑选培优/纠偏名单（自愿原则），创建靶向班；单独选学生发布会自动创建靶向班。",
+      "从知识图谱或考试成绩定位薄弱知识点。",
+      "选题优先带视频讲解题目：培优班用一轮精品课/拔尖题组；纠偏班用基础题组/名师点拨。",
+      "设定题量与完成时段发布（如：XX学科XX知识点靶向作业），任务截止后查看完成率、得分率。"],
+    tips: "三条红线：单次题量≤5道；分层作业不在班内集体讲解；连续三次未完成按约定踢出班级。名单每月至少动态复评一次。",
+    metric: "各科发布次数一周≥3次；完成率≥90%；阅卷率≥90%（高于常规任务的80%）。" },
+
+  { group: "adv", groupName: "深入使用", no: "03", title: "微信小程序上传音视频（题目讲解三法）",
+    video: "深入使用/3-微信小程序上传音视频/3.微信小程序上传音视频.mp4",
+    scene: "减轻教师重复讲题压力，把讲解沉淀为可反复观看的音视频，是「周测月考视频化」的核心操作。",
+    steps: ["方法一（全体可见）：在已发布任务中添加视频讲解，上传的视频全部学生都能看到。",
+      "方法二（小程序）：通过「辅立教学」微信小程序上传——一对多（点击录音或上传视频），也可一对一讲解；小程序同时支持批阅任务：打分、退回、分享、语音留言，随时随地批改作业。",
+      "方法三（定向讲解）：勾选答错人数创建靶向班，录制的讲解视频以资料形式发送到靶向班，只给需要的学生。"],
+    tips: "考后配套：每次周测、月考后以学科组为单位分工录制各题讲解并上传对应题目。",
+    metric: "讲解音视频覆盖率100%；其中讲解视频所占比例≥50%。" },
+
+  { group: "adv", groupName: "深入使用", no: "04", title: "任务中关联知识点",
+    video: "深入使用/4-任务中关联知识点/4.任务中关联知识点.mp4",
+    scene: "知识点关联是考试数据分析、反扫卷组卷、靶向班选题的共同前提——数据准，反扫才准。",
+    steps: ["系统AI会自动关联大部分学科和题目的知识点。",
+      "教师主要做查漏补缺：对未关联知识点的题目补标考点。",
+      "标好后即可在考试数据分析的「知识点分析」中按得分率定位薄弱点，指导后续组卷与分层。"],
+    tips: "补标考点在每次考试入库后进行一次即可，日常练习任务以系统自动关联为主。" },
+
+  { group: "adv", groupName: "深入使用", no: "05", title: "考试系统与考后反扫（图文要点）",
+    video: null,
+    scene: "正式考试走这条链路，与「答题卡任务」是两套东西：创建考试 → 纸质答题卡模板 → 扫卡（或 Pad 提交）→ 成绩入库 → 知识点分析 → 组考试反扫卷。是「凡有月考必有反扫卷」的执行入口。",
+    steps: ["左侧【考试】→ 右上角「创建考试」，填写必填项；需要扫描仪阅卷的交卷方式选「扫卡」，也可选「Pad 提交」。",
+      "首次创建【纸质答题卡】→【新建答题卡】：按题号批量添加题目，注意不同布局下方的适用纸张提示；需分小题阅卷的点「添加小题」，填空题在空白区设下划线。",
+      "预览确认后保存并下载模板——打印时严格匹配纸张尺寸、禁止缩放；后续考试可在原模板上微调复用。",
+      "上传模板：进入考试学科页点「设置模板」，再点「答案设置」逐题录入答案。",
+      "考后扫卡：打开扫卡客户端并连接扫描仪（注意先后顺序），选择考试与班级，扫第一张时校验红框是否覆盖答题框；Pad 提交的考试跳过此步。",
+      "成绩入库后在「考试数据分析 → 知识点分析」按得分率定位低得分题目，据此组「考试反扫卷」（任务类型必须选「考试反扫卷」）。"],
+    tips: "扫卡常见问题：红框定位不准多为定位点问题；三方卡模板扫描需先扫空白答题卡，填涂过的会影响识别；模板与实际打印纸张数不一致会报错。",
+    metric: "凡有月考必有反扫卷：考试反扫卷任务每月≥1次，完成率≥90%，阅卷率≥80%。" },
+
+  { group: "faq", groupName: "教师端常见问题", no: "01", title: "任务内容修改",
+    video: null,
+    imgs: ["教师端常见问题/1-任务内容修改/修改任务内容.png"],
+    scene: "任务发布后发现题目、分值或答案有误，可按以下步骤修改。",
+    steps: ["第一步：在任务列表找到需要修改的任务，点击进入。",
+      "第二步：进入任务后，找到「任务详情」部分，点击「修改内容」。",
+      "第三步：找到需要修改的题目点击「改编」，可修改分值、题干、答案，最后点击「替换」。",
+      "第四步：修改完成后点击「保存修改」；若修改多个班级的同一任务，根据提示点击「是，一起修改」即可。"] },
+
+  { group: "faq", groupName: "教师端常见问题", no: "02", title: "学生提交任务退回（打回重做）",
+    video: null,
+    imgs: ["教师端常见问题/2-学生提交任务退回/学生提交任务退回.png"],
+    scene: "学生提交质量不达标（漏拍、乱答、书写潦草）时，将提交打回重做。",
+    steps: ["在任务批阅界面找到该学生的提交。",
+      "点击「退回」，可附退回理由；学生端收到后重新作答提交。",
+      "批阅时同时支持：打分、作业分享、文字标注（见截图）。"] },
+
+  { group: "faq", groupName: "教师端常见问题", no: "03", title: "任务完成情况统计",
+    video: null,
+    imgs: ["教师端常见问题/3-任务完成情况统计/任务完成情况统计.png"],
+    scene: "单次任务的完成进度、提交率、得分率查看，用于追踪未完成学生。",
+    steps: ["进入对应任务的统计页面，查看班级维度的完成进度与提交率。",
+      "对未完成学生逐一提醒；任务截止后及时批阅。",
+      "年级主任每周按此口径核对四科错题反扫卷发布与完成情况。"],
+    metric: "单次任务完成后追踪未完成学生并提醒；阅卷率≥80%（分层作业≥90%）。" },
+
+  { group: "faq", groupName: "教师端常见问题", no: "04", title: "修改学生密码",
+    video: null,
+    imgs: ["教师端常见问题/4-修改学生密码/修改学生密码.png"],
+    scene: "学生忘记密码或账号异常时的处理。",
+    steps: ["进入班级管理，找到对应学生。",
+      "点击修改密码，设置新密码后告知学生重新登录。"] },
+
+  { group: "faq", groupName: "教师端常见问题", no: "05", title: "删除班级内学生",
+    video: null,
+    imgs: ["教师端常见问题/5-删除班级内学生/删除班级内学生.png"],
+    scene: "学生转班、退学等人员变动时的班级维护。",
+    steps: ["点击界面左下角齿轮（设置）。",
+      "找到「我的班级」，在任教班级中定位需要删除的学生。",
+      "点击「删除」完成移除。"],
+    tips: "学生账号创建与变动由校内教务老师统一负责，账号创建周期不超过半天。" },
+
+  { group: "faq", groupName: "教师端常见问题", no: "06", title: "题目讲解的三种方法",
+    video: null,
+    imgs: ["教师端常见问题/6-题目讲解三种方法/题目讲解.png", "教师端常见问题/6-题目讲解三种方法/答案机阅.jpg"],
+    scene: "课后如何把讲解沉淀下来供学生反复观看，覆盖全班、个别与定向三类需求。",
+    steps: ["方法一：在已发布任务中添加视频讲解——上传的视频全部学生可见。",
+      "方法二：通过「辅立教学」微信小程序上传——一对多（点击录音或上传视频），也可一对一讲解。",
+      "方法三：针对几个特定学生——勾选答错人数创建靶向班，录制的视频以资料形式发送到靶向班。",
+      "客观题可先用「答案机阅」自动批阅，教师聚焦主观题讲解。"] },
+
+  { group: "stu", groupName: "学生操作", no: "01", title: "学生端操作说明（总览）",
+    video: "学生操作/学生端操作说明.mp4",
+    scene: "学生端入门总览：登录、接收任务、作答提交、查看批阅与讲解的全流程认知，建议班会统一播放。",
+    steps: ["学生登录平板端，查看教师发布的各类任务。",
+      "按任务要求作答：拍照上传、在线作答或观看资料。",
+      "查看教师批阅结果、得分与讲解视频，针对错题进行订正。" ],
+    tips: "学生账号由教务统一创建，忘记密码找班主任或任课教师重置。",
+    metric: "学生任务完成率≥90%是全部指标的前提，需学生端配合保障。" },
+
+  { group: "stu", groupName: "学生操作", no: "02", title: "学课程 · 课程自学",
+    video: "学生操作/学课程-课程自学.mp4",
+    scene: "学生使用平台课程资源自主学习：码上提分精品课、校本课程、名校课程，配合培优与补弱。",
+    steps: ["进入「课程」界面，选择学科与章节。",
+      "观看课程视频，完成配套题目。",
+      "培优生按靶向班要求完成一轮精品课/拔尖题组学习。" ] },
+
+  { group: "stu", groupName: "学生操作", no: "03", title: "清任务 · 提交作业",
+    video: "学生操作/清任务-提交作业.mp4",
+    scene: "学生日常清空任务清单的核心操作：作答、拍照上传、提交，保证完成率数据真实有效。",
+    steps: ["在任务列表打开当日任务，按题目要求作答。",
+      "拍照上传注意：光线充足、字迹清晰、按题组拍摄（分组拍照规则）。",
+      "提交前检查照片完整性；被退回的任务按批注重新作答再提交。",
+      "注意截止时间，默认发布后24小时，考试/测验类任务不允许晚交。" ],
+    metric: "学生任务完成率≥90%；当晚清空当日任务为最佳习惯。" },
+
+  { group: "stu", groupName: "学生操作", no: "04", title: "练错题 · 错题练习与整理",
+    video: "学生操作/练错题-错题练习与整理.mp4",
+    scene: "学生端错题闭环：完成重练任务、使用个性错题本整理复习，是错题重练场景的学生侧配合动作。",
+    steps: ["在重练时间收到系统推送的个人错题（默认隔一天），按时完成重练。",
+      "进入个人错题本，按学科、知识点筛选查看自己的历史错题。",
+      "对反复出错的题目重点标记，配合靶向图谱进行针对性学习。" ],
+    metric: "错题重练完成率≥90%、重练得分率≥80%；每周至少3次习题任务会生成错题重练。" },
+
+  { group: "stu", groupName: "学生操作", no: "05", title: "错题重练专题（学生篇）",
+    guide: "学生操作/错题应用专题_学生篇.html",
+    scene: "「让每一道错题都被精准重练」：学生视角的错题应用专题，含三个章节——日常任务错题重练、错题快速重练、靶向图谱学习。与教师篇专题配套使用（教师篇在「深入使用」分类）。",
+    steps: ["日常任务错题重练：当天任务中的错题，隔天自动推送重练。",
+      "错题快速重练：自主发起错题重练，考前集中消化个性错题。",
+      "靶向图谱学习：按知识图谱查看薄弱点，跟随图谱推荐的课程与题目定向补弱。" ],
+    tips: "建议班主任在班会播放学生端四个视频 + 学生篇专题，让学生先会用、再用好。" }
+];
+
+var GROUPS = [
+  { key: "basic", name: "基础操作 · 教师必备技能", color: "var(--green)" },
+  { key: "adv",   name: "深入使用 · 进阶版",       color: "var(--orange)" },
+  { key: "faq",   name: "教师端常见问题 · 图文",    color: "var(--blue)" },
+  { key: "stu",   name: "学生操作 · 学生端",       color: "var(--red)" }
+];
+var BADGE = { basic: ["b-basic", "基础操作"], adv: ["b-adv", "深入使用"], faq: ["b-faq", "常见问题"], stu: ["b-stu", "学生操作"] };
+
+var navEl = document.getElementById("nav");
+var detailEl = document.getElementById("detail");
+var current = null;
+
+function renderNav(filter) {
+  navEl.innerHTML = "";
+  GROUPS.forEach(function (g) {
+    var items = DATA.filter(function (s) { return s.group === g.key; });
+    if (filter) items = items.filter(function (s) {
+      return (s.title + (s.scene || "")).toLowerCase().indexOf(filter.toLowerCase()) > -1;
+    });
+    if (!items.length) return;
+    var div = document.createElement("div");
+    div.className = "nav-group";
+    div.innerHTML = '<div class="g-title"><span class="g-dot" style="background:' + g.color + '"></span>' + g.name + '</div>';
+    items.forEach(function (s) {
+      var b = document.createElement("button");
+      b.className = "nav-item" + (current && current.no === s.no && current.group === s.group ? " active" : "");
+      b.innerHTML = '<span class="no">' + s.no + '</span>' + s.title;
+      b.onclick = function () { select(s); };
+      div.appendChild(b);
+    });
+    navEl.appendChild(div);
+  });
+}
+
+function esc(s) { return s; }
+var MANUAL = {"课程任务发布": {"sec": "1. 课程任务（P1-2）", "text": ["课程任务", "辅立码课课程任务包括：“码上提分”精品课程、校本课程、名校课程。在【课程】界面可选择通过“码上提分”精品课程，或者在校本课程中选择需要发给学生的内容。", "点击布置任务，可跳转到任务设置界面，如图1-3所示。选择完成需要发布的任务点击布置任务，会跳转到任务设置界面。"], "imgs": [{"src": "基础操作/2-课程任务发布/手册/01.png", "cap": "图1-1 任务类型入口"}, {"src": "基础操作/2-课程任务发布/手册/02.png", "cap": "图1-2 课程列表"}, {"src": "基础操作/2-课程任务发布/手册/03.png", "cap": "图1-3 跳转任务设置"}]}, "学科网选题": {"sec": "7. 学科网选题（P10-11）", "text": ["学科网选题", "首次登录需要微信扫码绑定学科网账号，绑定后辅立码课账号即可与学科网账号进行关联，后续点击【学科网选题】即可自动登录。", "学科网账号，为老师的手机号/邮箱/用户名/或微信扫码登录，如果您是学校新开的账号，系统会自动给您发送开通短信，短信内有初始密码，如图1-21所示：", "点击学科网选题之后，会跳转到学科网的选题界面，在学科网中选择自己需要的题目，加入选题篮，然后点击去组卷，点击选好了，等待组卷完成之后进入辅立码课，可以以任务的形式发送给学生。"], "imgs": [{"src": "基础操作/3-学科网选题/手册/01.png", "cap": "图1-20 学科网入口"}, {"src": "基础操作/3-学科网选题/手册/02.png", "cap": "图1-21 选题界面"}, {"src": "基础操作/3-学科网选题/手册/03.png", "cap": "图1-22 加入选题篮"}, {"src": "基础操作/3-学科网选题/手册/04.png", "cap": "图1-23 去组卷"}, {"src": "基础操作/3-学科网选题/手册/05.png", "cap": "图1-24 组卷完成"}]}, "练习任务发布（题库/选卷）": {"sec": "5. 题库选题任务 ／ 9. 任务发布界面（P8-9、P12-13）", "text": ["题库选题任务", "通过【题库选题】可以跳转到题库界面，根据不同的筛选方式，选取自己的需要的题目。", "视频题目优先，学生做答完成之后，到达答案公布时间的时候，题目会携带视频解析。", "过滤已使用，可以帮助老师筛选和排除已经使用过的题目。", "任务发布介绍", "任务发布界面中：", "任务名称：建议写任务发布时间+任务内容；", "时间设置：根据需求填写发布时间，默认是立即发布，可以设定发布时间", "截止时间默认是自发布任务起24小时截至，可根据需求设定截止时间", "公布答案默认是提交后可见，防止学生间传达答案，建议设定答案公布时间", "允许晚交默认是允许，非必要时间限制的任务建议是允许晚交，学生数据收集是常态化的动作，可以收集更完整数据。", "阅卷方式：学生通过Pad提交作业，选择题系统会自动批阅，非选择题拍照上传，可以通过学生互阅（学生之间互相批阅作业）、教师批阅、学生自阅（学生自己批改作业）三种方式完成，大大减少了教师批改作业的时间。", "学生互阅：用在非正式的批阅作业、练习等，优点是减轻老师阅卷负担，学生提交答案后，先根据答案自己改错，然后再批阅1至2份系统自动推送的其他同学试卷，也能通过评价别人来提升自己的理解水平。", "教师批阅：教师科通过微信小程序（辅立教学）或电脑登录网站批改作业。通过微信（辅立教学）小程序可以随时随地批改作业，解放了固定时间、固定地点批改作业的障碍。"], "imgs": [{"src": "基础操作/4-练习任务发布/手册/01.png", "cap": "图1-15 题库筛选"}, {"src": "基础操作/4-练习任务发布/手册/02.png", "cap": "图1-17 选卷任务"}, {"src": "基础操作/4-练习任务发布/手册/03.png", "cap": "图1-26 选题篮调整"}, {"src": "基础操作/4-练习任务发布/手册/04.png", "cap": "图1-27 任务发布界面"}]}, "资料任务": {"sec": "2. 资料任务（P2-3）", "text": ["资料任务", "点击资料任务之后，会进入资料任务界面，输入任务名称，添加附件，编辑任务内容。可以把课堂使用的ppt或者英语听力发送给学生，支持多种文件的格式，需要注意，附件大小限制80MB。资料任务学生只可观看学习，不可以进行作答上传答案。"], "imgs": [{"src": "基础操作/5-资料任务/手册/01.png", "cap": "图1-4 资料任务入口"}, {"src": "基础操作/5-资料任务/手册/02.png", "cap": "图1-5 资料任务界面"}]}, "答题卡任务（制答题卡）": {"sec": "3. 答题卡任务（P3-6）", "text": ["答题卡任务", "点击【制答题卡】任务，可以跳转到如下图1-7所示的答题卡制作界面；", "第一步：需要输入答题卡/试卷名称；", "第二步：根据需要上传的题目进行答题卡部分的制作，根据实际选择题数量、非选择题数量添加题目的题号；选择题部分的答案，可以直接点击选择题答案。", "第三步：上传需要文件的电子档，支持多种格式上传；附件部分可以上传英语的听力；Word导入：需要题目、答案分离，格式完整清晰的文件使用。", "点击【添加题目】，添加所需题型，题目数量，题号，选项个数，题目分值，如图1-9所示：", "选择题勾选答案即可，多选题勾选多个答案，如图1-10所示：", "点击【答案/解析】设置答案/解析（可文字录入、复制粘贴、截图）如图1-11所示：", "设置好答题卡的名称、选择题的答案，然后点击切题。", "建议选择逐题框选、模式选择—快速；在这个模式下可以给题目设置标准的边框线，只需要按住鼠标左键进行框选题目和答案。如下图1-12所示：", "可以将需要录入的资料发给工作人员辅助上传。"], "imgs": [{"src": "基础操作/6-答题卡任务/手册/01.png", "cap": "图1-6 制答题卡入口"}, {"src": "基础操作/6-答题卡任务/手册/02.png", "cap": "图1-7 答题卡制作界面"}, {"src": "基础操作/6-答题卡任务/手册/03.png", "cap": "图1-8 添加题目"}, {"src": "基础操作/6-答题卡任务/手册/04.png", "cap": "图1-11 答案/解析设置"}, {"src": "基础操作/6-答题卡任务/手册/05.png", "cap": "图1-12 切题框选"}]}, "错题重练（教师篇专题）": {"sec": "二、4. 错题反扫（P21-23）", "text": ["错题反扫", "4.1重练统计：", "可以看到班级的重练完成情况，统计中可以看到班级维度下，学生的班级重连得分率、班级重练完成率；", "同时可以看到学生各自的重练得分率，错题任务完成率、以及学生的个性错题本。如图2-11所示；", "4.2共性错题", "可以看到已完成任务中学生的共性错题部分，可以通过不同的任务类型进行筛选；可以选定任务的时间区间，方便阶段性的巩固。", "选择共性错题时，可以参考练习得分率，可以优先选择得分率低于年级的题目，然后加入选题，发布任务。如图2-12所示。", "4.3错题重练修改", "适用于任务发布过程中忘记打开错题重练的功能，快速实现任务错题重练功能。点击需要查看的任务，在任务详情界面的右上角有错题重练的按钮，如图2-13所示。可以将不重练修改为个性错题、为防止错题数量过多，学生没有充足时间完成当日新任务，建议设置最大题量，设置好发布时间，推荐时间设置为任务发布后第二天，可根据实际情况修改。修改好阅卷方式、重练题型，点击确认。学生即可在设置好的发布时间收到原错题进行重练。如图2-14所示。"], "imgs": [{"src": "深入使用/1-错题重练/手册/01.png", "cap": "图2-10 错题反扫入口"}, {"src": "深入使用/1-错题重练/手册/02.png", "cap": "图2-11 重练统计"}, {"src": "深入使用/1-错题重练/手册/03.png", "cap": "图2-12 共性错题"}, {"src": "深入使用/1-错题重练/手册/04.png", "cap": "图2-13 错题重练修改"}, {"src": "深入使用/1-错题重练/手册/05.png", "cap": "图2-14 重练设置"}]}, "靶向提升（分层靶向班）": {"sec": "三、3. 靶向教学（P27-33）", "text": ["3.1对人靶向", "把鼠标慢慢移动到靶向的位置，会出现“对人靶向”、“对点靶向”；点击对人靶向。", "第一步：找到任教/学生所在的班级。", "第二步：设置好科目，可以是全科/任教的学科，设置某段时间的学情，开始时间、结束时间", "第三步：找到学生的姓名，也可以通过搜索去寻找需要靶向提升的学生。然后点击学生姓名。", "在此界面可以看到学生某段时间内，总分的平均分、平均排名、最近排名等信息。", "可以看到学生的每个学科的成绩排名，标红的部分表示是拉分的学科，可以针对于这些学科进行靶向提升，点击薄弱学科的学情图谱：", "点击【6函数及其表示】→点击【对题靶向】，如图3-11所示：", "可从全部错题/高考真题/相似题中选择题目推送给学生，达到对人对点对题个体培优的效果，如图3-12所示：", "3.2对点靶向", "针对于此知识点下，学生的得分情况会被展示在学生学情中，可以根据学生的得分率框选柱状图，框选完成后右侧部分学生姓名之前会出现对勾如下图所示，也可以通过双维度分布框选学生，需要调整部分，直接取消学生前边的对勾就可以。对这些学生创建靶向班进行题目的推送，如图3-14，3-15所示。", "提供多种选题方式：共性错题、高考真题、题库选题。方便找到题目进行题目的推送。", "建议在题目选取的时候选择具备视频解析的题目，方便学生完成题目后及进行习题的巩固。", "题目选取之后加入选题可以发送到创建的靶向班，如图3-16所示。"], "imgs": [{"src": "深入使用/2-靶向提升/手册/01.png", "cap": "图3-7 靶向入口"}, {"src": "深入使用/2-靶向提升/手册/02.png", "cap": "图3-8 对人靶向"}, {"src": "深入使用/2-靶向提升/手册/03.png", "cap": "图3-9 学情画像"}, {"src": "深入使用/2-靶向提升/手册/05.png", "cap": "图3-14 得分率框选"}, {"src": "深入使用/2-靶向提升/手册/06.png", "cap": "图3-20 按知识点建班"}, {"src": "深入使用/2-靶向提升/手册/07.png", "cap": "图3-24 按分值建班"}]}, "微信小程序上传音视频（题目讲解三法）": {"sec": "二、2. 批改阅卷 ／ 2.5 文字标注（P17-19）", "text": ["批改阅卷", "任务界面中的【批改阅卷】进入作业批改界面，点击开始阅卷。如图2-4所示。", "2.1题目批阅：", "可选择按题阅/按人阅；按人阅，每个学生任务全部批阅完成自动跳转下一个学生；按题阅，会根据题目进行批阅，相同题目，一个学生一个学生批阅。", "2.2打分方式：", "打分板：提供快捷的打分方式，可更改打分步长：例如，步长是1，分值为1、2、3、4、5......", "标注给分：适用于填空题或者简答题，选中加分/减分，直接点击屏幕可以实现打分。如图2-5所示；", "2.3作业分享：", "可以分享学生的优秀作业给别的学生查看。方便学生借鉴模仿。", "提供了多种分享原因，可直接选取。如图2-6所示；", "2.4打回重做：", "可以把学生提交的作业退回，打回后提交任务的时间应该和第一次提交任务的时间间隔15分钟。如图2-5所示；", "打回后应该监督学生重交，否则系统计算的任务数据将不准确（比如，该学生会始终待阅，得分率等数据也会计算改学生的）", "2.5文字标注："], "imgs": [{"src": "深入使用/3-微信小程序上传音视频/手册/01.png", "cap": "图2-4 批改阅卷入口"}, {"src": "深入使用/3-微信小程序上传音视频/手册/02.png", "cap": "图2-6 作业分享"}, {"src": "深入使用/3-微信小程序上传音视频/手册/03.png", "cap": "图2-7 文字标注"}, {"src": "深入使用/3-微信小程序上传音视频/手册/04.png", "cap": "图2-7 语音讲解（小程序）"}]}, "考试系统与考后反扫（图文要点）": {"sec": "三、5.3 答题卡扫描（P40-41）", "text": ["5.3答题卡扫描（仅扫卡模式需要）", "1、整理好答题卡，打开“辅立码课扫卡客户端”（需要提前安装），再通过USB数据线连接扫描仪。（注意先后顺序）", "2、点击进入考试，在需要扫卡的学科后点击扫描答题卡，选择考试班级并确认", "3、开始扫卡，放入一张答题卡，第一张扫描后会出现校验页面，校验红框是否将答题框全部覆盖。", "4、扫卡过程中会出现异常试卷，点击【异常情况】即可进入异常试卷处理页面（请不要重复提交）", "5、常见异常卷处理方式", "考号识别异常：根据学生卷面信息输入考号或姓名检索提交即可", "客观题异常：根据学生涂卡情况及提示缺失题目勾选即可，如果学生没有填直接提交", "6、扫卡结束并解决异常卷之后返回考试页面，开始阅卷分配， 为老师分配批阅题目。", "7、返回考试页面点击【开始阅卷】即可阅卷", "8、阅卷结束后，点击【结束阅卷】。", "9、结束阅卷后，可进行成绩统计查询、及excel导出。"], "imgs": [{"src": "深入使用/5-考试系统与考后反扫/手册/01.jpeg", "cap": "扫卡：选择考试与班级"}, {"src": "深入使用/5-考试系统与考后反扫/手册/02.jpeg", "cap": "扫卡：校验红框"}, {"src": "深入使用/5-考试系统与考后反扫/手册/03.jpeg", "cap": "扫卡：异常卷处理"}]}, "学生提交任务退回（打回重做）": {"sec": "二、2.4 打回重做（P18）", "text": ["2.4打回重做：", "可以把学生提交的作业退回，打回后提交任务的时间应该和第一次提交任务的时间间隔15分钟。如图2-5所示；", "打回后应该监督学生重交，否则系统计算的任务数据将不准确（比如，该学生会始终待阅，得分率等数据也会计算改学生的）"], "imgs": [{"src": "教师端常见问题/2-学生提交任务退回/手册/01.png", "cap": "图2-5 打回重做"}, {"src": "教师端常见问题/2-学生提交任务退回/手册/02.png", "cap": "图2-5 退回理由"}, {"src": "教师端常见问题/2-学生提交任务退回/手册/03.png", "cap": "图2-6 作业分享"}]}, "任务完成情况统计": {"sec": "二、3. 完成统计（P20）", "text": ["完成统计", "任课教师，可以通过完成统计看到班级内学生的完成情况，可以设定时间段，可以进行完成率的排序，方便老师找到完成率低的同学。如图2-8所示", "班主任：可以通过学情部分，点击班级学情，找到任务统计，可以修改时间段，然后下载，可以看到班级内学生各个学科的任务统计，如图2-9所示"], "imgs": [{"src": "教师端常见问题/3-任务完成情况统计/手册/01.png", "cap": "图2-8 完成统计"}, {"src": "教师端常见问题/3-任务完成情况统计/手册/02.png", "cap": "图2-9 完成率排序"}]}, "修改学生密码": {"sec": "4.5 修改学生密码（P36）", "text": ["4.5修改学生密码", "第一步：点击左下角齿轮；第二步：点击我的班级；第三步：找到需要移除修改密码的学生点击密码，如图3-27、图3-28所示。", "辅立教学-微信小程序中完成学生密码修改：右下角点击“我”—学生管理—对应学生—修改密码，输入学生新密码，点击完成即可，如图3-29所示。"], "imgs": [{"src": "教师端常见问题/4-修改学生密码/手册/01.png", "cap": "图3-27 我的班级"}, {"src": "教师端常见问题/4-修改学生密码/手册/02.png", "cap": "图3-28 修改密码"}, {"src": "教师端常见问题/4-修改学生密码/手册/03.png", "cap": "图3-29 小程序端修改"}]}, "删除班级内学生": {"sec": "4.2 删除学生信息（P35）", "text": ["4.2删除学生信息（班主任权限）", "第一步：点击左下角齿轮；第二步：点击我的班级；第三步：找到需要移除的学生点击删除。"], "imgs": [{"src": "教师端常见问题/5-删除班级内学生/手册/01.png", "cap": "图3-26 删除学生"}]}, "题目讲解的三种方法": {"sec": "二、1. 大屏讲题（P16-17）", "text": ["大屏讲题", "任务发布成功后，点击需要查看的任务，可以看到任务的完成情况：", "点击发布过的任务进入之后，可以看到本次任务的完成情况，本次任务的平均分、得分率、完成率、以及阅卷情况。", "柱状图部分：柱状体的横坐标代表任务中题目的题号；纵坐标代表题目的得分率。红色代表得分率低，绿色代表得分率较高，可以以此作为判断标准，红色课堂重点讲解，绿色对学生课下单独讲解。", "讲解过程：点击【大屏讲题】：左侧是题目的题号，题号的框是绿色得分率高，题目的框是红色得分率低，", "点击退出上方的按钮，可以看到学生关于题目的作答情况，可以看到每个学生具体选择的哪个选项。如图2-3所示", "批注讲解：教师可以在教室的大屏进行题目的讲解，可以写板书，讲解完成之后，可以点击发送学生，学生就可以收到本道题目讲解的板书，方便学生课下整理。", "随机点名：为了增加课程的互动性，提高学生的专注度，可以实现点名，可以根据学生的实际选项进行点名。如图2-3所示"], "imgs": [{"src": "教师端常见问题/6-题目讲解三种方法/手册/01.png", "cap": "图2-1 大屏讲题入口"}, {"src": "教师端常见问题/6-题目讲解三种方法/手册/02.png", "cap": "图2-2 题目讲解界面"}, {"src": "教师端常见问题/6-题目讲解三种方法/手册/03.png", "cap": "图2-3 学生作答情况"}]}};
+
+function renderDetail(s) {
+  var html = '<div class="d-head"><h2>' + s.title + '</h2><span class="badge ' + BADGE[s.group][0] + '">' + BADGE[s.group][1] + ' ' + s.no + '</span></div>';
+  if (s.scene) html += '<div class="block"><h3>适用场景</h3><p>' + s.scene + '</p></div>';
+  if (s.steps && s.steps.length) {
+    html += '<div class="block"><h3>操作步骤 / 要点</h3><ol>' + s.steps.map(function (x) { return '<li>' + x + '</li>'; }).join("") + '</ol></div>';
+  }
+  if (s.tips) html += '<div class="block"><div class="tip"><b>提示</b> · ' + s.tips + '</div></div>';
+  if (s.metric) html += '<div class="block"><div class="metric"><b>指标口径</b> · ' + s.metric + '</div></div>';
+  if (s.imgs && s.imgs.length) {
+    html += '<div class="block"><h3>手册截图（点击放大）</h3><div class="imgs">' +
+      s.imgs.map(function (p) { return '<img src="' + encodeURI(p) + '" alt="操作截图" onclick="zoom(this.src)">'; }).join("") + '</div></div>';
+  }
+  if (s.guide) {
+    html += '<div class="block"><h3>图文专题 · <a href="' + encodeURI(s.guide) + '" target="_blank" style="color:var(--orange);text-decoration:none;">在新窗口全屏打开 ↗</a></h3>' +
+      '<iframe src="' + encodeURI(s.guide) + '" style="width:100%;height:760px;border:1px solid var(--border);border-radius:10px;background:#fff;" loading="lazy"></iframe>' +
+      '<div class="no-video" style="margin-top:8px;">内嵌页面可滚动阅读完整专题（含操作截图）；点击标题右侧链接可在独立窗口全屏浏览。</div></div>';
+  }
+  html += '<div class="block"><h3>配套视频</h3>';
+  if (s.video) {
+    html += '<div class="video-box"><video id="v" src="' + encodeURI(s.video) + '" controls controlslist="nodownload"></video></div>';
+  } else {
+    html += '<div class="no-video">本条为图文解析，暂无独立视频；相关操作演示可观看左侧「基础操作」或「深入使用」分类中的配套视频。</div>';
+  }
+  html += '</div>';
+  var man = MANUAL[s.title];
+  if (man) {
+    html += '<div class="block"><h3>配套手册 · ' + man.sec + '</h3>';
+    if (man.text && man.text.length) html += '<div class="manual-text">' + man.text.map(function (x) { return '<p>' + x + '</p>'; }).join("") + '</div>';
+    if (man.imgs && man.imgs.length) html += '<div class="figs">' + man.imgs.map(function (f) {
+      return '<figure onclick="zoom(\'' + encodeURI(f.src) + '\')"><img src="' + encodeURI(f.src) + '" alt="' + f.cap + '"><figcaption>' + f.cap + '（点击放大）</figcaption></figure>';
+    }).join("") + '</div>';
+    html += '</div>';
+  }
+  detailEl.innerHTML = html;
+  detailEl.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function select(s) {
+  current = s;
+  renderNav(document.getElementById("search").value.trim());
+  renderDetail(s);
+}
+function filterNav(v) { renderNav(v.trim()); }
+function zoom(src) {
+  document.getElementById("imgMaskImg").src = src;
+  document.getElementById("imgMask").classList.add("show");
+}
+
+select(DATA[3]);
+</script>
+</body>
+</html>

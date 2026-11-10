@@ -1,0 +1,18 @@
+# 二进制文件：不做换行符转换，避免视频/图片损坏
+*.mp4 binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+# HTML/JS/CSS 统一用 LF 入库，Windows 检出仍按 LF 保持相对路径一致
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.md   text eol=lf
+
+# GitHub 语言统计：不要把 HTML 占比算成整站
+*.html linguist-detectable=true
