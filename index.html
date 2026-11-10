@@ -310,6 +310,7 @@ var BADGE = { basic: ["b-basic", "基础操作"], adv: ["b-adv", "深入使用"]
 var navEl = document.getElementById("nav");
 var detailEl = document.getElementById("detail");
 var current = null;
+var firstRender = true;
 
 function renderNav(filter) {
   navEl.innerHTML = "";
@@ -378,13 +379,18 @@ function renderDetail(s) {
     html += '</div>';
   }
   detailEl.innerHTML = html;
-  detailEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  // 首屏不自动滚动，让页面停留在顶部的应用场景简介与目录；点击左侧条目时才滚动到详情
+  if (!firstRender) detailEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  firstRender = false;
 }
 
-function select(s) {
+function select(s, keepHash) {
   current = s;
   renderNav(document.getElementById("search").value.trim());
   renderDetail(s);
+  if (!keepHash) {
+    try { history.replaceState(null, "", "#" + s.no); } catch (e) {}
+  }
 }
 function filterNav(v) { renderNav(v.trim()); }
 function zoom(src) {
@@ -392,7 +398,17 @@ function zoom(src) {
   document.getElementById("imgMask").classList.add("show");
 }
 
-select(DATA[3]);
+// 默认打开第一条（01 课程任务发布）；若网址带 #04 这类序号，则直达对应条目
+var startIdx = 0;
+(function () {
+  var h = "";
+  try { h = decodeURIComponent((location.hash || "").replace(/^#/, "")).trim(); } catch (e) {}
+  if (!h) return;
+  for (var i = 0; i < DATA.length; i++) {
+    if (DATA[i].no === h || DATA[i].title === h) { startIdx = i; break; }
+  }
+})();
+select(DATA[startIdx], true);
 </script>
 </body>
 </html>
