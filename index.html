@@ -355,7 +355,8 @@ function renderDetail(s) {
   }
   html += '<div class="block"><h3>配套视频</h3>';
   if (s.video) {
-    html += '<div class="video-box"><video id="v" src="' + encodeURI(s.video) + '" controls controlslist="nodownload"></video></div>';
+    html += '<div class="video-box"><video id="v" src="' + encodeURI(s.video) + '" controls controlslist="nodownload" preload="none" playsinline></video></div>' +
+      '<div class="no-video" style="margin-top:8px;">视频按需加载：点击播放键后才开始下载，首次加载视网络情况需几秒；若长时间卡顿，可直接使用本地离线文件夹中的同名视频。</div>';
   } else {
     html += '<div class="no-video">本条为图文解析，暂无独立视频；相关操作演示可观看左侧「基础操作」或「深入使用」分类中的配套视频。</div>';
   }
